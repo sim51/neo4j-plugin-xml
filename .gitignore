@@ -1,0 +1,5 @@
+.idea/
+neo4j-home/
+target/
+*.iml
+

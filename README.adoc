@@ -1,0 +1,43 @@
+= Neo4j plugin XML
+
+== Description
+
+This project is just an example on how to make a Neo4j plugin.
+It creates a new endpoint on which you can POST a cypher query, and it translates the response into a XML format.
+
+Moreover this plugin is compatible with JRebel.  If you don't need this compatibility, you just have to remove the JRebel plugin into the pom.xml
+
+== Installation
+
+=== Compiling the code
+
+ * Go to the project folder
+ * just run `mvn package`
+
+=== Neo4j installation
+
+ * copy `neo4j-xml-1.0-SNAPSHOT-jar-with-dependencies.jar` from the target project folder to the plugins folder of Neo4j : `$>cp target/neo4j-xml-1.0-SNAPSHOT-jar-with-dependencies.jar NEO4J_HOME/plugins`
+ * Edit the file `NEO4J_HOME/conf/neo4j-server.properties`
+ * Add / modify the following line : `org.neo4j.server.thirdparty_jaxrs_classes=org.neo4j.plugin.xml=/xml`
+ * Restart the server
+
+== How to use it
+
+There is two new endpoints :
+
+The Ping one :
+
+[source,shell]
+----
+$> curl -u neo4j:admin http://localhost:7474/xml/ping
+Pong
+----
+
+The cypher one :
+
+[source,shell]
+----
+$> curl -u neo4j:admin http://localhost:7474/xml/cypher -d 'query=MATCH (n) RETURN n LIMIT 100'
+<?xml version="1.0" encoding="utf-8"?>
+<result><row><n><name>Benoit</name></n></row></result>
+----
