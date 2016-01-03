@@ -5,7 +5,7 @@
 This project is just an example on how to make a Neo4j plugin.
 It creates a new endpoint on which you can POST a cypher query, and it translates the response into a XML format.
 
-Moreover this plugin is compatible with JRebel.  If you don't need this compatibility, you just have to remove the JRebel plugin into the pom.xml
+Moreover this plugin is compatible with JRebel.  If you don't need this compatibility, you just have to remove the JRebel plugin from the pom.xml
 
 == Installation
 
